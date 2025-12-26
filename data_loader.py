@@ -1,6 +1,8 @@
 import pandas as pd
 
-DATA_URL = "https://raw.githubusercontent.com/govex/COVID-19/master/data_tables/vaccine_data/global_data/time_series_covid19_vaccine_global.csv"
+DATA_URL = "https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/owid-covid-data.csv"
+
+
 def load_covid_data() -> pd.DataFrame:
     """
     Load COVID-19 dataset from local CSV file.
