@@ -54,18 +54,40 @@ pct_change = (avg_table["post_vaccination"] - avg_table["pre_vaccination"]) / av
 avg_table["pct_change"] = pct_change
 print(avg_table)
 
+# Daily new cases over time by country
 plt.figure()
 
 for country in df["location"].unique():
     country_df = df[df["location"] == country]
-    plt.plot(country_df["date"], country_df["new_cases"], label=country)
+    plt.plot(country_df["date"], country_df["new_cases"], label=country, linewidth=1)
 
 plt.title("Daily new cases of COVID-19")
 plt.xlabel("Date")
 plt.ylabel("New Cases")
 plt.legend()
 
+plt.tight_layout()
 plt.savefig("covid_data/daily_new_cases.png")
+plt.close()
+
+# Weekly cases over time by country
+plt.figure(figsize=(10, 6))
+
+for country in df["location"].unique():
+    country_df = df[df["location"] == country].copy()
+    country_df = country_df.sort_values("date")
+
+    country_df["weekly_cases"] = country_df["new_cases"].rolling(7).mean()
+
+    plt.plot(country_df["date"], country_df["weekly_cases"], label=country, linewidth=1)
+
+plt.title("Weekly new cases of COVID-19")
+plt.xlabel("Date")
+plt.ylabel("New Cases")
+plt.legend()
+
+plt.tight_layout()
+plt.savefig("covid_data/weekly_new_cases.png")
 plt.close()
 
 plt.figure(figsize=(8, 6))
