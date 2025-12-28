@@ -14,7 +14,7 @@ def clean_data(df: pd.DataFrame) -> pd.DataFrame:
     ]]
     return df
 
-def filter_countries(df):
+def filter_countries(df: pd.DataFrame) -> pd.DataFrame:
     return df[df["location"].isin(COUNTRIES)].copy()
 
 
