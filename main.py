@@ -1,19 +1,20 @@
 import data_loader 
 import cleaning 
 import pandas as pd
+import matplotlib.pyplot as plt
 
 print("START")
 df = data_loader.load_covid_data()
 print("LOADED")
-# print(df.columns)
+# # print(df.columns)
 
 df = cleaning.clean_data(df)
-# print(df.head())
+# # print(df.head())
 df = cleaning.filter_countries(df)
 
 
-print(df["location"].unique())
-print(df.shape)
+# print(df["location"].unique())
+# print(df.shape)
 
 
 def add_vaccination_period(df: pd.DataFrame) -> pd.DataFrame:
@@ -35,3 +36,46 @@ df = add_vaccination_period(df)
 
 print(df.groupby(["location", "period"]).size())
 print(df.groupby("location")["vaccination_start_date"].first())
+
+df.to_csv("covid_data/cleaned_data.csv", index=False)
+
+# df = pd.read_csv(
+#     "covid_data/cleaned_data.csv",
+#     parse_dates=["date", "vaccination_start_date"]
+# )
+
+# average daily new cases before and after vaccination start date
+avg_cases = df.groupby(["location", "period"])["new_cases"].mean().reset_index()
+print(avg_cases)
+
+avg_table = avg_cases.pivot(index="location", columns="period", values="new_cases")
+
+pct_change = (avg_table["post_vaccination"] - avg_table["pre_vaccination"]) / avg_table["pre_vaccination"] * 100
+avg_table["pct_change"] = pct_change
+print(avg_table)
+
+plt.figure()
+
+for country in df["location"].unique():
+    country_df = df[df["location"] == country]
+    plt.plot(country_df["date"], country_df["new_cases"], label=country)
+
+plt.title("Daily new cases of COVID-19")
+plt.xlabel("Date")
+plt.ylabel("New Cases")
+plt.legend()
+
+plt.savefig("covid_data/daily_new_cases.png")
+plt.close()
+
+plt.figure(figsize=(8, 6))
+
+avg_table[["pre_vaccination", "post_vaccination"]].plot(kind="bar")
+
+plt.title("Average Daily New Cases: Pre vs Post Vaccination")
+plt.xlabel("Country")
+plt.ylabel("Average New Cases")
+
+plt.tight_layout()
+plt.savefig("covid_data/avg_new_cases_comparison.png")
+plt.close()
