@@ -5,9 +5,6 @@ import analysis
 import visualization
 
 
-
-
-
 def main():
     
     df = data_loader.load_covid_data()

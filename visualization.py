@@ -10,6 +10,9 @@ def create_plot_daily_new_cases(df: pd.DataFrame):
         country_df = df[df["location"] == country]
         plt.plot(country_df["date"], country_df["new_cases"], label=country, linewidth=1)
 
+    start_date = country_df["vaccination_date"].iloc[0]
+    plt.axvline(x=start_date, color="red", linestyle="--", label="Vaccination Start Date")
+
     plt.title("Daily new cases of COVID-19")
     plt.xlabel("Date")
     plt.ylabel("New Cases")
@@ -30,6 +33,9 @@ def create_plot_weekly_new_cases(df: pd.DataFrame):
         country_df["weekly_cases"] = country_df["new_cases"].rolling(7).mean()
 
         plt.plot(country_df["date"], country_df["weekly_cases"], label=country, linewidth=1)
+
+    start_date = country_df["vaccination_date"].iloc[0]
+    plt.axvline(x=start_date, color="red", linestyle="--", label="Vaccination Start Date")
 
     plt.title("Weekly new cases of COVID-19")
     plt.xlabel("Date")
@@ -59,7 +65,7 @@ def create_plot_avg_new_deaths_comparison(avg_deaths_table: pd.DataFrame):
 
     plt.figure(figsize=(8, 6))
 
-    avg_deaths_table[["pre_vaccination", "post_vaccination"]].plot(kind="bar")
+    avg_deaths_table[["pre_vaccination", "post_vaccination"]].plot(kind="bar", width=0.8)
 
     plt.title("Average Daily New Deaths: Pre vs Post Vaccination")
     plt.xlabel("Country")
