@@ -10,7 +10,7 @@ def create_plot_daily_new_cases(df: pd.DataFrame):
         country_df = df[df["location"] == country]
         plt.plot(country_df["date"], country_df["new_cases"], label=country, linewidth=1)
 
-    start_date = country_df["vaccination_date"].iloc[0]
+    start_date = country_df["vaccination_start_date"].iloc[0]
     plt.axvline(x=start_date, color="red", linestyle="--", label="Vaccination Start Date")
 
     plt.title("Daily new cases of COVID-19")
@@ -34,7 +34,7 @@ def create_plot_weekly_new_cases(df: pd.DataFrame):
 
         plt.plot(country_df["date"], country_df["weekly_cases"], label=country, linewidth=1)
 
-    start_date = country_df["vaccination_date"].iloc[0]
+    start_date = country_df["vaccination_start_date"].iloc[0]
     plt.axvline(x=start_date, color="red", linestyle="--", label="Vaccination Start Date")
 
     plt.title("Weekly new cases of COVID-19")
