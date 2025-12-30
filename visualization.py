@@ -18,7 +18,7 @@ def create_plot_daily_new_cases(df: pd.DataFrame):
     plt.ylabel("New Cases")
     plt.legend()
     plt.tight_layout()
-    plt.savefig("covid_data/daily_new_cases.png")
+    plt.savefig("visualizations/daily_new_cases.png")
     plt.close()
 
 
@@ -42,7 +42,7 @@ def create_plot_weekly_new_cases(df: pd.DataFrame):
     plt.ylabel("New Cases")
     plt.legend()
     plt.tight_layout()
-    plt.savefig("covid_data/weekly_new_cases.png")
+    plt.savefig("visualizations/weekly_new_cases.png")
     plt.close()
 
 
@@ -51,13 +51,13 @@ def create_plot_avg_new_cases_comparison(avg_table: pd.DataFrame):
 
     plt.figure(figsize=(8, 6))
 
-    avg_table[["pre_vaccination", "post_vaccination"]].plot(kind="bar")
+    avg_table[["pre_vaccination", "post_vaccination"]].plot(kind="bar", width=0.5)
 
     plt.title("Average Daily New Cases: Pre vs Post Vaccination")
     plt.xlabel("Country")
     plt.ylabel("Average New Cases")
     plt.tight_layout()
-    plt.savefig("covid_data/avg_new_cases_comparison.png")
+    plt.savefig("visualizations/avg_new_cases_comparison.png")
     plt.close()
 
 def create_plot_avg_new_deaths_comparison(avg_deaths_table: pd.DataFrame):
@@ -65,11 +65,11 @@ def create_plot_avg_new_deaths_comparison(avg_deaths_table: pd.DataFrame):
 
     plt.figure(figsize=(8, 6))
 
-    avg_deaths_table[["pre_vaccination", "post_vaccination"]].plot(kind="bar", width=0.8)
+    avg_deaths_table[["pre_vaccination", "post_vaccination"]].plot(kind="bar", width=0.5)
 
     plt.title("Average Daily New Deaths: Pre vs Post Vaccination")
     plt.xlabel("Country")
     plt.ylabel("Average New Deaths")
     plt.tight_layout()
-    plt.savefig("covid_data/avg_new_deaths_comparison.png")
+    plt.savefig("visualizations/avg_new_deaths_comparison.png")
     plt.close()
