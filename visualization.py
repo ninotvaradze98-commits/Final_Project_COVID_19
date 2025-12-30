@@ -53,3 +53,17 @@ def create_plot_avg_new_cases_comparison(avg_table: pd.DataFrame):
     plt.tight_layout()
     plt.savefig("covid_data/avg_new_cases_comparison.png")
     plt.close()
+
+def create_plot_avg_new_deaths_comparison(avg_deaths_table: pd.DataFrame):
+    """Create and save a plot (bar chart) comparing average daily new deaths pre and post vaccination."""
+
+    plt.figure(figsize=(8, 6))
+
+    avg_deaths_table[["pre_vaccination", "post_vaccination"]].plot(kind="bar")
+
+    plt.title("Average Daily New Deaths: Pre vs Post Vaccination")
+    plt.xlabel("Country")
+    plt.ylabel("Average New Deaths")
+    plt.tight_layout()
+    plt.savefig("covid_data/avg_new_deaths_comparison.png")
+    plt.close()

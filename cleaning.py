@@ -13,6 +13,7 @@ def clean_data(df: pd.DataFrame) -> pd.DataFrame:
         "date",
         "location",
         "new_cases",
+        "new_deaths",
         "people_vaccinated",
         "people_fully_vaccinated"
     ]]
@@ -25,7 +26,3 @@ def filter_countries(df: pd.DataFrame) -> pd.DataFrame:
     return df[df["location"].isin(COUNTRIES)].copy()
 
 
-if __name__ == "__main__":
-    df = pd.read_csv("covid_data/cleaned_data.csv")
-    print(clean_data(df))
-    print(filter_countries(df))

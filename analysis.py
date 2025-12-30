@@ -36,3 +36,19 @@ def create_avg_table(df: pd.DataFrame) -> pd.DataFrame:
     avg_table["pct_change"] = pct_change
    
     return avg_table
+
+
+def create_avg_table_deaths(df: pd.DataFrame) -> pd.DataFrame:
+    """
+    Creates a table of average daily new deaths before and after vaccination start date.
+    The function calculates:
+    - average daily new deaths for pre-vaccination and post-vaccination periods
+    - percentage change in average daily new deaths between the two periods
+    """
+    avg_deaths = df.groupby(["location", "period"])["new_deaths"].mean().reset_index()
+    avg_deaths_table = avg_deaths.pivot(index="location", columns="period", values="new_deaths")
+
+    pct_change = (avg_deaths_table["post_vaccination"] - avg_deaths_table["pre_vaccination"]) / avg_deaths_table["pre_vaccination"] * 100
+    avg_deaths_table["pct_change"] = pct_change
+
+    return avg_deaths_table
