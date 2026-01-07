@@ -105,6 +105,28 @@ Charts are saved in the `visualizations/` directory.
 
 ---
 
+## How to Run the Project
+### 1.Create and activate a virtual environment
+```bash
+python3 -m venv .venv
+source .venv/bin/activate  
+```
+### 2.Install required libraries
+```bash
+pip install pandas matplotlib
+```
+### 3.Run the full analysis
+```bash
+python main.py
+```
+### 4.Generated outputs
+After running the script:
+- Cleaned datasets will be saved in `covid_data/`
+- Summary tables will be saved as CSV files
+- Charts will be automatically generated and saved in `visualizations/`
+
+---
+
 ## Results
 The analysis shows that for all selected countries:
 - Average daily new COVID-19 cases increased after vaccination campaigns began
