@@ -1,6 +1,5 @@
 import data_loader 
 import cleaning 
-import pandas as pd
 import analysis
 import visualization
 

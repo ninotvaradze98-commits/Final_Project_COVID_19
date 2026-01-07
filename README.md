@@ -127,6 +127,12 @@ After running the script:
 
 ---
 
+## Code Quality
+- All public functions include docstrings and type hints.
+- Function and variable naming follows Python `snake_case` conventions.
+- Optional linting was performed using **ruff** to identify unused imports and minor style issues.
+
+---
 ## Results
 The analysis shows that for all selected countries:
 - Average daily new COVID-19 cases increased after vaccination campaigns began
