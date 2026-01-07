@@ -2,9 +2,9 @@
 
 
 ## Project Goal
-This project analyzes how COVID-19 case trends and mortality rates  changed before and after vaccination campaigns. The analysis compares three countries representing regional difference in Asia, Europe, United States.
+This project analyzes how COVID-19 case trends and mortality rates changed before and after vaccination campaigns. The analysis compares three countries representing regional differences in Asia, Europe, and the United States.
 
-The project demonstates:
+The project demonstrates:
 - Data loading and cleaning
 - Data analysis
 - Visualization of trends
@@ -18,7 +18,7 @@ How did COVID-19 case trends and mortality rates change after vaccination campai
 ---
 
 ## Data Sources
-The analysis uses publicly available COVID-19 data from Our World in Data (https://ourworldindata.org/covid-cases)”
+The analysis uses publicly available COVID-19 data from Our World in Data (https://ourworldindata.org/covid-cases)
 
 The dataset includes:
 - COVID-19 case counts
@@ -26,14 +26,14 @@ The dataset includes:
 - Vaccination statistics
 - Population data
 
-The data is loaded directly from a public URL using pandas
+The data is loaded directly from a public URL using pandas.
 
 ---
 
 ## Project Structure
 - main.py - runs the full analysis pipeline
-- deta_loader.py - loads the dataset
-- cleaing.py - cleans the data  and filters selected countries
+- data_loader.py - loads the dataset
+- cleaning.py - cleans the data and filters selected countries
 - analysis.py - defines vaccination periods and creates summary tables
 - visualization.py - creates charts and visualizations
 - covid_data/ - stores generated CSV files
@@ -78,7 +78,7 @@ The analysis computes:
 - Average daily new COVID-19 deaths before and after vaccination
 - Percentage change between pre- and post-vaccination periods
 
-The implementation uses pandas groupby operations and aggregation functions such as mean() and min() to summarize data by country and vaccination period. Reusable helper functions are implemented for data cleaning, analysis, and visualization to keep the code modular and easy to maintain.
+The implementation uses pandas `groupby` operations and aggregation functions such as `mean()` and `min()` to summarize data by country and vaccination period. Reusable helper functions are implemented for data cleaning, analysis, and visualization to keep the code modular and easy to maintain.
 
 ---
 
@@ -113,5 +113,5 @@ The analysis shows that for all selected countries:
 
 These results suggest that while infections continued after vaccination campaigns started, vaccinations may have contributed to limiting severe outcomes.
 
-The analysis only describes the data and does not prove cause-and-effect relationships.
+The analysis is descriptive and does not establish cause-and-effect relationships.
 
