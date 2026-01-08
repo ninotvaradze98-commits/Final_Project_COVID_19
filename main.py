@@ -14,6 +14,7 @@ def main():
     df = analysis.add_vaccination_period(df)
 
     df.to_csv("covid_data/cleaned_data.csv", index=False)
+    df.head(100).to_csv("covid_data/sample_cleaned_data.csv", index=False)
 
     avg_table = analysis.create_avg_table(df)
     avg_table.to_csv("covid_data/avg_new_cases.csv", index=False)

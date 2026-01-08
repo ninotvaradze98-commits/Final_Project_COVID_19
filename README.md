@@ -38,6 +38,8 @@ The data is loaded directly from a public URL using pandas.
 - visualization.py - creates charts and visualizations
 - covid_data/ - stores generated CSV files
 - visualizations/ - stores generated PNG files
+- sample_cleaned_data.csv - small sample of the cleaned dataset for reproducibility and quick inspection
+
 
 ---
 
@@ -58,6 +60,13 @@ Data preparation includes:
   - Japan
   - Germany
   - United States
+
+---
+
+### Missing Value Handling
+- Missing vaccination values are treated as zero when identifying vaccination start dates.
+- Rows are not dropped due to missing case or death values.
+- Aggregations such as averages are computed using pandas, which automatically ignores missing values.
 
 ---
 
