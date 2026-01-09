@@ -122,7 +122,7 @@ source .venv/bin/activate
 ```
 ### 2.Install required libraries
 ```bash
-pip install pandas matplotlib
+pip install -r requirements.txt
 ```
 ### 3.Run the full analysis
 ```bash
@@ -136,6 +136,12 @@ After running the script:
 
 ---
 
+## Notes on Dependencies
+- Project metadata and dependencies are also declared in `pyproject.toml`
+- `requirements.txt` is provided for simple and explicit installation on a fresh machine
+- Both files describe the same dependencies and are kept consistent
+
+---
 ## Code Quality
 - All public functions include docstrings and type hints.
 - Function and variable naming follows Python `snake_case` conventions.

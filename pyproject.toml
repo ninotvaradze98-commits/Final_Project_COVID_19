@@ -1,7 +1,10 @@
 [project]
 name = "final-project-covid-19"
 version = "0.1.0"
-description = "Add your description here"
+description = "Analysis of COVID-19 case and mortality trends before and after vaccination campaigns"
 readme = "README.md"
-requires-python = ">=3.14"
-dependencies = []
+requires-python = ">=3.9"
+dependencies = [
+    "pandas",
+    "matplotlib"
+]
