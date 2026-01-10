@@ -27,5 +27,12 @@ def main():
     visualization.create_plot_avg_new_cases_comparison(avg_table)
     visualization.create_plot_avg_new_deaths_comparison(avg_deaths_table)
 
+    ttest_cases = analysis.run_ttest_pre_post(df, "new_cases")
+    ttest_deaths = analysis.run_ttest_pre_post(df, "new_deaths")
+
+    ttest_cases.to_csv("covid_data/ttest_new_cases.csv", index=False)
+    ttest_deaths.to_csv("covid_data/ttest_new_deaths.csv", index=False)
+
+
 if __name__ == "__main__":
     main()

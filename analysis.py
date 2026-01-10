@@ -1,4 +1,5 @@
 import pandas as pd
+from scipy.stats import ttest_ind
 
 def add_vaccination_period(df: pd.DataFrame) -> pd.DataFrame:
     """
@@ -52,3 +53,31 @@ def create_avg_table_deaths(df: pd.DataFrame) -> pd.DataFrame:
     avg_deaths_table["pct_change"] = pct_change
 
     return avg_deaths_table
+
+def run_ttest_pre_post(df: pd.DataFrame, value_column: str) -> pd.DataFrame:
+    """
+    Runs a simple two-sample t-test comparing pre- and post-vaccination
+    periods for each country.
+    This test is exploratory and intended only to demonstrate basic
+    statistical comparison, not to establish causation.
+    """
+    results = []
+
+    for country in df["location"].unique():
+        country_df = df[df["location"] == country]
+
+        pre = country_df[country_df["period"] == "pre_vaccination"][value_column].dropna()
+        post = country_df[country_df["period"] == "post_vaccination"][value_column].dropna()
+
+        if len(pre) > 1 and len(post) > 1:
+            stat, p_value = ttest_ind(pre, post, equal_var=False)
+        else:
+            p_value = None
+
+        results.append({
+            "country": country,
+            "metric": value_column,
+            "p_value": p_value
+        })
+
+    return pd.DataFrame(results)
