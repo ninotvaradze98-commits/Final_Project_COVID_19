@@ -40,7 +40,8 @@ The data is loaded directly from a public URL using pandas.
 - covid_data/ - stores generated CSV files
 - visualizations/ - stores generated PNG files
 - sample_cleaned_data.csv - small sample of the cleaned dataset for reproducibility and quick inspection
-
+- tests/ - tests data loading and structure, vaccination period split logic
+- tests/conftest.py - configures Python path so project modules can be imported in tests
 
 ---
 
@@ -91,6 +92,7 @@ The analysis computes:
 The implementation uses pandas `groupby` operations and aggregation functions such as `mean()` and `min()` to summarize data by country and vaccination period. Reusable helper functions are implemented for data cleaning, analysis, and visualization to keep the code modular and easy to maintain.
 
 ---
+
 ## Statistical Testing (Exploratory)
 A simple two-sample t-test is applied to compare pre- and post-vaccination periods for each country.
 - The test is run separately for:
@@ -105,7 +107,7 @@ New COVID-19 Cases:
 - Japan: p ≈ 1.8e-10
 - United States: p ≈ 0.00036
 
-New COVID-19 Deaths
+New COVID-19 Deaths:
 - Germany: p ≈ 0.45
 - Japan: p ≈ 0.001
 - United States: p ≈ 0.32
@@ -178,12 +180,32 @@ After running the script:
 - Both files describe the same dependencies and are kept consistent
 
 ---
+
 ## Code Quality
 - All public functions include docstrings and type hints.
 - Function and variable naming follows Python `snake_case` conventions.
 - Optional linting was performed using **ruff** to identify unused imports and minor style issues.
 
 ---
+
+## Testing
+A minimal automated test suite is included using **pytest**.
+
+The tests are intentionally small and focused:
+- One test validates that data loading produces a DataFrame with expected structure
+- One test verifies that vaccination periods are correctly split into pre- and post-vaccination using a fabricated example dataset
+- A `conftest.py` file is used to ensure project modules are discoverable by pytest during test execution.
+
+
+These tests are designed to validate core logic only and are not intended to provide exhaustive coverage.
+
+### Running Tests
+```bash
+pytest
+```
+
+---
+
 ## Results
 The analysis shows that for all selected countries:
 - Average daily new COVID-19 cases increased after vaccination campaigns began
